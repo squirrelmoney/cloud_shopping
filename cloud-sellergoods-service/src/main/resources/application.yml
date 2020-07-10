@@ -1,0 +1,23 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-sellergoods-service
+  profiles:
+    active: euraka
+    include: spring
+
+
+
+logging:
+  level:
+    com.jessie.mall.sellergoodsService.dao: debug
+
+
+
+
+
+
+
+

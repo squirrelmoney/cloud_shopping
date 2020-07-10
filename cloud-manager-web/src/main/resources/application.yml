@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: manager-web
+  # 开启mvc的HiddenHttpMethodFilter，以便可以表单可以发送PUT、DELETE等请求
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+eureka:
+  client:
+    register-with-eureka: true #表示是否注册进化uareka中
+    fetch-registry: true #是否从Eureka抓取自己已有的注册信息，单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    #单机版
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.int}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+server:
+  port: 9000
+

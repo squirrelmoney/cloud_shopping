@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.datasource.initial-size",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.initial-size."
+  }
+] }
