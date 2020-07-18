@@ -1,11 +1,11 @@
 package com.jessie.mall.cloudmanagerweb.Controller;
 import com.jessie.mall.cloudmanagerweb.feign.BrandFeignClient;
-import com.jessie.mall.common.common.R;
+import com.jessie.mall.common.common.TypeTemplateResult;
 import com.jessie.mall.common.common.pageResult;
-import com.jessie.mall.entity.TbBrand;
+import com.jessie.mall.common.common.R;
+import com.jessie.mall.pojo.TbBrand;
+import com.jessie.mall.pojo.TbSpecification;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -17,24 +17,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/Brand/brand")
 public class Web_BrandController {
-//    @Resource
-//    private RestTemplate restTemplate;
     @Resource
     private BrandFeignClient brandFeignClient;
 
-    //String REST_URL_PREFIX="http://cloud-sellergoods-service";
-//    @GetMapping("/list")
-//    public List<TbBrand> select(){
-//        return restTemplate.getForObject(REST_URL_PREFIX + "/Brand/brand/list",List.class);
-//    }
+    @GetMapping("/list")
+    public List<TbBrand> select(){
+        return brandFeignClient.findAll();
+    }
+
+    @GetMapping("/forType")
+    public  List<TypeTemplateResult> selectforType(){
+        return brandFeignClient.selectforType();
+    }
+
     @RequestMapping("/findPage")
-    public pageResult findPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNo") Integer pageNo){
-        return brandFeignClient.findPage(pageSize,pageNo);
+    public pageResult findPage(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows){
+        return brandFeignClient.findPage(page,rows);
     }
 
     @PutMapping("/")
     public R save(@RequestBody TbBrand tbBrand){
-       return brandFeignClient.save(tbBrand);
+       return brandFeignClient.add(tbBrand);
     }
 
     @PostMapping("/")
@@ -42,14 +45,13 @@ public class Web_BrandController {
         return brandFeignClient.updata(tbBrand);
     }
 
-    @RequestMapping("/ids")
-    public R delete(@RequestBody long[] ids){
+    @GetMapping("/delete")
+    public R delete(@RequestParam Long[] ids){
         return brandFeignClient.delete(ids);
     }
 
-    @RequestMapping("/search")
-    public R search(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNo") Integer pageNo,
-                    @RequestBody TbBrand brand){
-        return brandFeignClient.search(pageSize,pageNo,brand);
+    @PostMapping("/search")
+    public R search(@RequestBody TbSpecification specification, @RequestParam("page") int page, @RequestParam("rows") int rows){
+        return brandFeignClient.search(specification,page,rows);
     }
 }

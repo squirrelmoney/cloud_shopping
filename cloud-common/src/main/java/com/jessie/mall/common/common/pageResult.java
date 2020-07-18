@@ -10,12 +10,12 @@ import java.util.List;
 /**
  * @description:
  * @author: money
- * @time: 2020/7/8 9:27
+ * @time: 2020/7/10 12:07
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class pageResult implements Serializable {
-   private  long pageSize;
-   private List pageNum;
+    private  long pageSize;
+    private List pageNum;
 }

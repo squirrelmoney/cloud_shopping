@@ -21,11 +21,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.jessie.mall</groupId>
-            <artifactId>cloud-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>com.Jessie.mall</groupId>
             <artifactId>cloud-pojo</artifactId>
             <version>0.0.1-SNAPSHOT</version>

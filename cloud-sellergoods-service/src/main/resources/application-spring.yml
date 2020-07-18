@@ -4,7 +4,7 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://120.78.163.21:3306/dongmysql?characterEncoding=utf8&useSSL=false&useUnicode=true
+      url: jdbc:mysql://120.78.163.21:3333/dongmysql?characterEncoding=utf8&useSSL=false&useUnicode=true
       username: root
       password: 123
       #配置初始化大小/最小/最大[仅用于测试，生成环境需要修改哦]

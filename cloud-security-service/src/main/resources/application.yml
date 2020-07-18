@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: cloud-security-service
+  # 开启mvc的HiddenHttpMethodFilter，以便可以表单可以发送PUT、DELETE等请求
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://120.78.163.21:3333/security?characterEncoding=utf8&useSSL=false&useUnicode=true
+      username: root
+      password: 123
+      #配置初始化大小/最小/最大[仅用于测试，生成环境需要修改哦]
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      #指定获取连接时连接校验的sql查询语句
+      validation-query: SELECT 'x'
+      #验证连接的有效性
+      test-while-idle: true
+      #获取连接时候验证，会影响性能（不建议true）
+      test-on-borrow: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+
+eureka:
+  client:
+    register-with-eureka: true #表示是否注册进化uareka中
+    fetch-registry: true #是否从Eureka抓取自己已有的注册信息，单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    #单机版
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.int}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+server:
+  port: 8002
+

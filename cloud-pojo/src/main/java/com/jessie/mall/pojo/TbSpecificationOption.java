@@ -1,5 +1,12 @@
 package com.jessie.mall.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TbSpecificationOption {
     private Long id;
 
@@ -9,35 +16,5 @@ public class TbSpecificationOption {
 
     private Integer orders;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getOptionName() {
-        return optionName;
-    }
-
-    public void setOptionName(String optionName) {
-        this.optionName = optionName == null ? null : optionName.trim();
-    }
-
-    public Long getSpecId() {
-        return specId;
-    }
-
-    public void setSpecId(Long specId) {
-        this.specId = specId;
-    }
-
-    public Integer getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Integer orders) {
-        this.orders = orders;
-    }
 }

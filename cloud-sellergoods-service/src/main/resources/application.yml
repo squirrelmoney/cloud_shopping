@@ -7,12 +7,9 @@ spring:
   profiles:
     active: euraka
     include: spring
-
-
-
 logging:
   level:
-    com.jessie.mall.sellergoodsService.dao: debug
+    com.jessie.mall.sellergoodsService.mapper: debug
 
 
 
